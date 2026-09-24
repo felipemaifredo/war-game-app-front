@@ -1,0 +1,42 @@
+.mapContainer {
+  width: 100%;
+  height: calc(100vh - 100px - 4rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.svg {
+  width: 100%;
+  height: 100%;
+  max-width: 800px;
+  max-height: 800px;
+  drop-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.countryGroup {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.countryGroup:hover .path {
+  fill-opacity: 0.8;
+  stroke: rgba(255, 255, 255, 0.8);
+  stroke-width: 1.5;
+}
+
+.path {
+  transition: all 0.3s ease;
+  vector-effect: non-scaling-stroke;
+}
+
+.selected {
+  outline: none;
+}
+
+.troopsText {
+  font-weight: bold;
+  pointer-events: none;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+}
