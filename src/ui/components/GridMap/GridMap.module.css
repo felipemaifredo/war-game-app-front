@@ -1,8 +1,11 @@
-.mapGrid {
+.worldMap {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-areas: 
+    "am_norte europa asia asia"
+    "am_sul africa oceania oceania";
   gap: 1.5rem;
-  margin-top: 2rem;
+  margin-top: 0.5rem;
   padding-bottom: 2rem;
   width: 100%;
   flex: 1;
@@ -10,56 +13,135 @@
   align-content: start;
 }
 
+/* Área de cada continente */
+.america_do_norte { grid-area: am_norte; }
+.america_do_sul { grid-area: am_sul; }
+.europa { grid-area: europa; }
+.africa { grid-area: africa; }
+.asia { grid-area: asia; }
+.oceania { grid-area: oceania; }
+
+.continent {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius-lg);
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.continentTitle {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  color: white;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.continentBonus {
+  font-size: 0.9rem;
+  font-weight: 700;
+  background-color: rgba(255, 255, 255, 0.15);
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  color: var(--color-primary);
+  text-shadow: none;
+  letter-spacing: normal;
+}
+
+.continentGrid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 6px;
+  flex: 1;
+}
+
 .territoryCard {
   position: relative;
-  border-radius: var(--radius-lg);
-  padding: 2rem 1.5rem;
+  border-radius: var(--radius-md);
+  padding: 0.5rem 0.25rem;
   text-align: center;
   cursor: pointer;
-  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s, filter 0.2s;
   color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: 0.25rem;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   box-sizing: border-box;
+  min-height: 60px;
 }
 
 .territoryCard:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+  filter: brightness(1.1);
 }
 
 .territoryCard.selected {
-  box-shadow: inset 0 0 0 4px white, 0 8px 15px rgba(0,0,0,0.3);
+  box-shadow: inset 0 0 0 4px white, 0 8px 15px rgba(0,0,0,0.4);
+  transform: scale(1.02);
 }
 
 .cardIcons {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 5px;
+  right: 5px;
   display: flex;
-  gap: 5px;
-  font-size: 1.2rem;
+  gap: 3px;
+  font-size: 0.8rem;
 }
 
 .territoryName {
-  font-size: 1.25rem;
+  font-size: 0.75rem;
   font-weight: 700;
   margin: 0;
   text-transform: capitalize;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+  word-wrap: break-word;
+  max-width: 100%;
 }
 
 .troopsBadge {
   background-color: rgba(255, 255, 255, 0.2);
-  padding: 0.5rem 1.5rem;
+  padding: 0.1rem 0.8rem;
   border-radius: 20px;
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: 800;
   text-shadow: 0 1px 2px rgba(0,0,0,0.5);
   backdrop-filter: blur(4px);
   border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Responsividade */
+@media (max-width: 1200px) {
+  .worldMap {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+      "am_norte europa"
+      "am_sul africa"
+      "asia asia"
+      "oceania oceania";
+  }
+}
+
+@media (max-width: 768px) {
+  .worldMap {
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+      "am_norte"
+      "am_sul"
+      "europa"
+      "africa"
+      "asia"
+      "oceania";
+  }
 }

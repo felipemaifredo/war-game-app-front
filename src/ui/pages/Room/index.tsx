@@ -205,7 +205,7 @@ export const Room: React.FC<RoomProps> = ({ roomId }) => {
           from: selectedFrom || undefined,
           to: selectedTo || undefined,
           minAmount: 0,
-          maxAmount: Math.min(3, fromT.troops - 1) // Move até 3 tropas
+          maxAmount: Math.min(2, fromT.troops - 1) // Move até 2 tropas a mais (já que 1 já foi obrigatoriamente, somando máx de 3)
         });
       } else {
         // Se não conquistou ou não pode mover mais nada, limpa
@@ -442,7 +442,7 @@ export const Room: React.FC<RoomProps> = ({ roomId }) => {
       <div className={styles.container}>
         
         {/* Top HUD with online status and player's color info */}
-        <div style={{ alignSelf: "flex-end", textAlign: "right", marginBottom: "1.5rem", paddingRight: "1rem" }}>
+        <div style={{ alignSelf: "flex-end", textAlign: "right", marginBottom: "0.5rem", paddingRight: "1rem" }}>
           <p style={{ margin: 0, fontWeight: "bold", color: myPlayer?.color }}>Você é a tropa {myColorName}</p>
           <p style={{ margin: 0, fontSize: "0.875rem", color: isConnected ? "green" : "red" }}>
             {isConnected ? "Conectado" : "Desconectado"}
